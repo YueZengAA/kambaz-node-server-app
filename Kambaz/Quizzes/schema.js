@@ -10,7 +10,7 @@ const QuestionSchema = new mongoose.Schema({
    },
    question: { type: String, required: true },
    options: [String],           
-   answer: mongoose.Schema.Types.Mixed, 
+   answer: String, 
    points: Number
 });
 
@@ -23,57 +23,68 @@ const quizSchema = new mongoose.Schema({
       enum: ["PUBLISH", "UNPUBLISH"],
       default: "UNPUBLISH",
    },
-   Description: String,
+   description: String,
    type: {
       type: String,
       enum: ["Graded Quiz", "Practice Quiz", "Graded Survey", "Ungraded Survey"],
       default: "Graded Quiz",
    },
    points: Number,
-   Group: {
+   group: {
       type: String,
       enum: ["Quizzes", "Exams", "Assignments", "Project"],
       default: "Quizzes",
    },
-   ShuffleAnswers: {
+   shuffleAnswers: {
       type: String,
-      enum: ["Yes", "No"],
-      default: "Yes",
+      enum: ["YES", "NO"],
+      default: "YES",
    },
-   TimeLimit: {
+   timeLimit: {
       type: Number,
       default: 20,
    },
-   MultipleAttempts: {
+   multipleAttempts: {
       type: String,
-      enum: ["Yes", "No"],
-      default: "No",
+      enum: ["YES", "NO"],
+      default: "NO",
    },
-   AccessCode: {
+   howManyAttempts: {
+      type: Number,
+      default: 1,
+   },
+   showCorrectAnswers: {
+      type: String,
+      enum: ["YES", "NO"],
+      default: "YES",
+   },
+   showCorrectAnswersAfter: Date,
+   accessCode: {
       type: String,
       default: "",
    },
-   OneQuestionataTime: {
+   oneQuestionAtATime: {
       type: String,
-      enum: ["Yes", "No"],
-      default: "Yes",
+      enum: ["YES", "NO"],
+      default: "YES",
    },
-   WebcamRequired: {
+   webcamRequired: {
       type: String,
-      enum: ["Yes", "No"],
-      default: "No",
+      enum: ["YES", "NO"],
+      default: "NO",
    },
-   LockQuestions: {
+   lockQuestions: {
       type: String,
-      enum: ["Yes", "No"],
-      default: "No",
+      enum: ["YES", "NO"],
+      default: "NO",
    },
    start: Date,
    until: Date,
    due: Date,
 
-   Questions: [QuestionSchema]
+   questions: [QuestionSchema]
  },
+
  { collection: "quizzes" }
 );
 
