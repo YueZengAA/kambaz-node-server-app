@@ -10,8 +10,8 @@ const QuestionSchema = new mongoose.Schema({
    },
    question: { type: String, required: true },
    options: [String],           
-   answer: String, 
-   points: Number
+   answer: mongoose.Schema.Types.Mixed, 
+   points: Number,
 });
 
 const quizSchema = new mongoose.Schema({

@@ -21,7 +21,7 @@ export function createQuiz(quiz) {
 export const findQuizById = (quizId) => model.findById(quizId);
 
 export const updateQuestion = async (quizId, questionId, questionData) => {
-  const result = await quizModel.updateOne(
+  const result = await model.updateOne(
     { _id: quizId, "questions._id": questionId },
     {
       $set: Object.entries(questionData).reduce((acc, [key, val]) => {
