@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const recordsSchema = new mongoose.Schema({
+const recordSchema = new mongoose.Schema({
     _id: String,                 
     userId: String,               
     quizId: String,               
@@ -11,9 +11,12 @@ const recordsSchema = new mongoose.Schema({
     answers: [                   
         {
         questionId: String,      
-        userAnswer: any,         
+        userAnswer: mongoose.Schema.Types.Mixed,         
         isCorrect: Boolean       
         },
     ]
+},
+{ collection: "quizRecords" }
+);
 
-})
+export default recordSchema;
