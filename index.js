@@ -14,8 +14,12 @@ import CourseRoutes from "./Kambaz/Courses/routes.js";
 import ModuleRoutes from "./Kambaz/Modules/routes.js";
 import AssignmentRoutes from "./Kambaz/Assignments/routes.js";
 import EnrollmentRoutes from "./Kambaz/Enrollments/routes.js";
+import QuizzesRoutes from "./Kambaz/Quizzes/routes.js";
+import RecordsRoutes from "./Kambaz/QuizRecords/routes.js";
+import mongoose from "mongoose";
 
-
+const CONNECTION_STRING = process.env.MONGO_CONNECTION_STRING || "mongodb://127.0.0.1:27017/kambaz";
+mongoose.connect(CONNECTION_STRING);
 const app = express();
 
 app.use(cors({
@@ -39,10 +43,11 @@ if (process.env.NODE_ENV !== "development") { // if not running locally
     };
   }
 
+
 app.use(session(sessionOptions));
 app.use(express.json());
-  
 
+  
 Hello(app);
 Lab5(app);
 PathParameters(app);
@@ -56,5 +61,7 @@ CourseRoutes(app);
 ModuleRoutes(app);
 AssignmentRoutes(app);
 EnrollmentRoutes(app);
+QuizzesRoutes(app);
+RecordsRoutes(app)
 
 app.listen(process.env.PORT || 4000);
